@@ -2,6 +2,7 @@ package com.example.study.validation.validator;
 
 import com.example.study.global.apiPayload.status.ErrorStatus;
 import com.example.study.repository.foodCategory.FoodCategoryRepository;
+import com.example.study.service.command.FoodCategoryService;
 import com.example.study.validation.annotation.ExistCategories;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -14,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoriesExistValidator implements ConstraintValidator<ExistCategories, List<Long>> {
 
-    private final FoodCategoryRepository foodCategoryRepository;
+    private final FoodCategoryService foodCategoryService; // 수정: Repository → Service
 
     @Override
     public void initialize(ExistCategories constraintAnnotation) {
@@ -23,15 +24,14 @@ public class CategoriesExistValidator implements ConstraintValidator<ExistCatego
 
     @Override
     public boolean isValid(List<Long> values, ConstraintValidatorContext context) {
-        boolean isValid = values.stream()
-                .allMatch(value -> foodCategoryRepository.existsById(value));
+        boolean isValid = foodCategoryService.areCategoriesExist(values); // 수정: Service 메서드 호출
 
         if (!isValid) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(ErrorStatus.FOOD_CATEGORY_NOT_FOUND.toString()).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.FOOD_CATEGORY_NOT_FOUND.toString())
+                    .addConstraintViolation();
         }
 
         return isValid;
-
     }
 }
