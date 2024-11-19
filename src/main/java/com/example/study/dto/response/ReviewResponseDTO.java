@@ -7,7 +7,7 @@ public class ReviewResponseDTO {
 
     @Getter
     @Builder
-    public class AddReviewResponseDto {
+    public static class AddReviewResponseDto {
         private Long reviewId;
         private String title;
         private Float score;

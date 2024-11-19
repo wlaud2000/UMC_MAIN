@@ -7,7 +7,7 @@ public class StoreResponseDTO {
 
     @Getter
     @Builder
-    public class AddStoreResponseDto {
+    public static class AddStoreResponseDto {
         private Long storeId;
         private String message;
     }

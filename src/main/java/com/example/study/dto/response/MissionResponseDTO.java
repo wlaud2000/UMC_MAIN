@@ -9,7 +9,7 @@ public class MissionResponseDTO {
 
     @Getter
     @Builder
-    public class ChallengeMissionResponseDto {
+    public static class ChallengeMissionResponseDto {
         private Long challengeId;
         private Long userId;
         private Long missionId;
@@ -19,7 +19,7 @@ public class MissionResponseDTO {
 
     @Getter
     @Builder
-    public class AddMissionResponseDto {
+    public static class AddMissionResponseDto {
         private Long missionId;
         private String title;
         private String description;
