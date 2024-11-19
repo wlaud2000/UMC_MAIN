@@ -1,7 +1,7 @@
-package com.example.study.apiPayload.exception;
+package com.example.study.global.apiPayload.exception;
 
-import com.example.study.apiPayload.code.BaseErrorCode;
-import com.example.study.apiPayload.code.ErrorReasonDTO;
+import com.example.study.global.apiPayload.code.BaseErrorCode;
+import com.example.study.global.apiPayload.code.ErrorReasonDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

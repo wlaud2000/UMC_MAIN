@@ -1,4 +1,4 @@
-package com.example.study.apiPayload.code;
+package com.example.study.global.apiPayload.code;
 
 import lombok.Builder;
 import lombok.Getter;

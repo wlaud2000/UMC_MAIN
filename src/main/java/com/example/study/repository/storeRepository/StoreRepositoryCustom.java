@@ -1,2 +1,9 @@
-package com.example.study.repository.storeRepository;public class StoreRepositoryCustom {
+package com.example.study.repository.storeRepository;
+
+import com.example.study.entity.Store;
+
+import java.util.List;
+
+public interface StoreRepositoryCustom {
+    List<Store> dynamicQueryWithBooleanBuilder(String name, Float score);
 }

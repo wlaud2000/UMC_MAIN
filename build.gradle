@@ -1,22 +1,14 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.3.5'
-    id 'io.spring.dependency-management' version '1.1.6'
+    id 'org.springframework.boot' version '3.0.0'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
-group = 'com.project'
+group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
+    sourceCompatibility = '17'
 }
 
 repositories {
@@ -24,17 +16,57 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'com.mysql:mysql-connector-j'
-    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.hibernate.orm:hibernate-core:6.0.2.Final'
+    implementation 'mysql:mysql-connector-java:8.0.33'
+
+    // QueryDSL
+    implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+    annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
+    annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+    annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.security:spring-security-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // 추가된 Hibernate Validator 의존성
+    implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
+    implementation 'org.glassfish:jakarta.el:4.0.2' // EL (Expression Language) API 필요
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
+// Q-Class 생성 경로 설정
+def queryDslSrcDir = file("src/main/generated/querydsl")
+
+// sourceSets에 QueryDSL 생성 경로 추가
+sourceSets {
+    main {
+        java {
+            srcDirs += queryDslSrcDir
+        }
+    }
+}
+
+// JavaCompile task 설정: Q-Class가 지정한 경로에 생성되도록 설정
+tasks.withType(JavaCompile).configureEach {
+    options.annotationProcessorPath = configurations.annotationProcessor
+}
+
+// clean task 시 QueryDSL 생성 경로 삭제
+clean {
+    delete queryDslSrcDir
+}
+
+// CompileOnly 설정 확장
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }

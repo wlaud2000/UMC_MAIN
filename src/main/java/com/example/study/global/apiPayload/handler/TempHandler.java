@@ -1,6 +1,7 @@
-package com.example.study.apiPayload.handler;
+package com.example.study.global.apiPayload.handler;
 
-import com.example.study.apiPayload.exception.GeneralException;
+import com.example.study.global.apiPayload.code.BaseErrorCode;
+import com.example.study.global.apiPayload.exception.GeneralException;
 
 public class TempHandler extends GeneralException {
     public TempHandler(BaseErrorCode errorCode) {
