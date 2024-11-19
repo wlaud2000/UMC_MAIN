@@ -41,6 +41,9 @@ public class Store extends BaseEntity {
                 ", region=" + (region != null ? region.getRegionName() : "N/A") + // region의 이름 출력
                 '}';
     }
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Review> reviewList = new ArrayList<>();
 }
 
 
