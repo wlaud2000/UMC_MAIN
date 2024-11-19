@@ -1,6 +1,6 @@
 package com.example.study.converter;
 
-import com.example.study.dto.TempResponse;
+import com.example.study.dto.response.TempResponse;
 
 public class TempConverter {
     public static TempResponse.TempTestDTO toTempTestDTO(){

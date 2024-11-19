@@ -3,16 +3,22 @@ package com.example.study.entity;
 import com.example.study.global.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@DynamicUpdate
+@DynamicInsert
 @Builder
 @Getter
-@Table(name = "user")
-public class User extends BaseEntity {
+@Table(name = "member")
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +43,10 @@ public class User extends BaseEntity {
 
     @Column(name = "address", nullable = false)
     private String address;
+
+    // 선호 카테고리
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MemberPrefer> preferCategories = new ArrayList<>();
 
     // Enum 정의
     public enum Provider {

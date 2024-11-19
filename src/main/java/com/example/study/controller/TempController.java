@@ -1,7 +1,7 @@
 package com.example.study.controller;
 
 import com.example.study.converter.TempConverter;
-import com.example.study.dto.TempResponse;
+import com.example.study.dto.response.TempResponse;
 import com.example.study.global.apiPayload.ApiResponse;
 import com.example.study.service.query.TempQueryService;
 import lombok.RequiredArgsConstructor;
