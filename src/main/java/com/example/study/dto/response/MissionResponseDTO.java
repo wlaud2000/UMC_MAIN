@@ -16,4 +16,13 @@ public class MissionResponseDTO {
         private String status;
         private LocalDateTime completedAt;
     }
+
+    @Getter
+    @Builder
+    public class AddMissionResponseDto {
+        private Long missionId;
+        private String title;
+        private String description;
+    }
+
 }
