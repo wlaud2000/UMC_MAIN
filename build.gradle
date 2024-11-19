@@ -32,7 +32,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
-    implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     // 추가된 Hibernate Validator 의존성
@@ -42,7 +41,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
     // Swagger
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+
 }
 
 // Q-Class 생성 경로 설정

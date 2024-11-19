@@ -23,11 +23,11 @@ public class Mission extends BaseEntity {
 //    @Column(name = "d_day", nullable = false)
 //    private int dDay;
 //
-//    @Column(name = "title", nullable = false)
-//    private String title;
-//
-//    @Column(name = "content", nullable = false)
-//    private String content;
+    @Column(name = "title", nullable = false)
+    private String title;
+
+    @Column(name = "description", nullable = false)
+    private String description;
 //
 //    @Column(name = "reward_point", nullable = false)
 //    private int rewardPoint;
