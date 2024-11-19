@@ -10,7 +10,7 @@ public class MissionRequestDTO {
 
     @Getter
     @Setter
-    public class ChallengeMissionRequestDto {
+    public static class ChallengeMissionRequestDto {
 
         @NotNull(message = "사용자 ID는 필수입니다.")
         private Long userId;
@@ -21,7 +21,7 @@ public class MissionRequestDTO {
 
     @Getter
     @Setter
-    public class AddMissionRequestDto {
+    public static class AddMissionRequestDto {
 
         @NotBlank(message = "미션 제목은 필수입니다.")
         private String title;

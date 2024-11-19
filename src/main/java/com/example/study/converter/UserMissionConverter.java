@@ -10,7 +10,7 @@ public class UserMissionConverter {
 
     public static UserMission toEntity(MissionRequestDTO.ChallengeMissionRequestDto request, Member member, Mission mission) {
         return UserMission.builder()
-                .user(member)
+                .member(member)
                 .mission(mission)
                 .status(UserMission.Status.IN_PROGRESS)
                 .completedAt(null)
@@ -20,7 +20,7 @@ public class UserMissionConverter {
     public static MissionResponseDTO.ChallengeMissionResponseDto toResponseDto(UserMission userMission) {
         return MissionResponseDTO.ChallengeMissionResponseDto.builder()
                 .challengeId(userMission.getId())
-                .userId(userMission.getUser().getId())
+                .userId(userMission.getMember().getId())
                 .missionId(userMission.getMission().getId())
                 .status(userMission.getStatus().name())
                 .completedAt(userMission.getCompletedAt())

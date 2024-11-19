@@ -10,7 +10,7 @@ public class ReviewRequestDTO {
 
     @Getter
     @Setter
-    public class AddReviewRequestDto {
+    public static class AddReviewRequestDto {
 
         @NotBlank(message = "리뷰 제목은 필수입니다.")
         private String title;
