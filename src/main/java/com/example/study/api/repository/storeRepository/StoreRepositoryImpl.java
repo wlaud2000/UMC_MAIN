@@ -1,6 +1,6 @@
 package com.example.study.api.repository.storeRepository;
 
-import com.example.study.entity.QStore;
+import com.example.study.api.entity.QStore;
 import com.example.study.api.entity.Store;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;

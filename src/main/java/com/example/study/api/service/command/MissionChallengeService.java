@@ -1,6 +1,6 @@
 package com.example.study.api.service.command;
 
-import com.example.study.api.converter.UserMissionConverter;
+import com.example.study.api.converter.MemberMissionConverter;
 import com.example.study.api.dto.request.MissionRequestDTO;
 import com.example.study.api.dto.response.MissionResponseDTO;
 import com.example.study.api.entity.Member;
@@ -26,9 +26,9 @@ public class MissionChallengeService {
         Member member = memberRepository.findById(request.getUserId())
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-        MemberMission memberMission = UserMissionConverter.toEntity(request, member, mission);
+        MemberMission memberMission = MemberMissionConverter.toEntity(request, member, mission);
         MemberMission savedMission = memberMissionRepository.save(memberMission);
 
-        return UserMissionConverter.toResponseDto(savedMission);
+        return MemberMissionConverter.toResponseDto(savedMission);
     }
 }

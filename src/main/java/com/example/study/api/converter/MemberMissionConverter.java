@@ -6,7 +6,7 @@ import com.example.study.api.entity.Member;
 import com.example.study.api.entity.MemberMission;
 import com.example.study.api.entity.Mission;
 
-public class UserMissionConverter {
+public class MemberMissionConverter {
 
     public static MemberMission toEntity(MissionRequestDTO.ChallengeMissionRequestDto request, Member member, Mission mission) {
         return MemberMission.builder()
