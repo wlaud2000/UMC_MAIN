@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @Getter
-@Table(name = "user_mission")
+@Table(name = "member_mission")
 public class MemberMission extends BaseEntity {
 
     @Id
