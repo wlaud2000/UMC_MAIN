@@ -27,4 +27,9 @@ public class ReviewRequestDTO {
         @ExistStore
         private Long storeId;
     }
+
+    @Getter
+    public static class ReviewListRequestDTO {
+        private Long userId;
+    }
 }

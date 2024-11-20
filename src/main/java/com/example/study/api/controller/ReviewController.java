@@ -3,19 +3,27 @@ package com.example.study.api.controller;
 import com.example.study.api.dto.request.ReviewRequestDTO;
 import com.example.study.api.dto.response.ReviewResponseDTO;
 import com.example.study.api.service.command.ReviewService;
+import com.example.study.api.service.query.ReviewQueryService;
+import com.example.study.global.apiPayload.ApiResponse;
+import com.example.study.global.validation.annotation.PageValidation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/stores/{storeId}/reviews")
+@RequestMapping("/reviews/stores/{storeId}")
 public class ReviewController {
 
     private final ReviewService reviewService;
+    private final ReviewQueryService reviewQueryService;
 
     @PostMapping
     @Operation(
@@ -29,6 +37,16 @@ public class ReviewController {
             ) ReviewRequestDTO.AddReviewRequestDto request) {
         ReviewResponseDTO.AddReviewResponseDto response = reviewService.addReview(request);
         return ResponseEntity.ok(response);
+    }
+
+    @Operation(summary = "내가 작성한 리뷰 목록 조회", description = "로그인한 사용자가 작성한 리뷰 목록을 조회합니다.")
+    @GetMapping("/my-reviews")
+    public ApiResponse<ReviewResponseDTO.ReviewPreViewListDTO> getMyReviews(
+            @RequestParam Long userId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        ReviewResponseDTO.ReviewPreViewListDTO response = reviewQueryService.getMyReviews(userId, page, size);
+        return ApiResponse.onSuccess(response);
     }
 }
 
