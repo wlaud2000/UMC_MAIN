@@ -43,8 +43,8 @@ public class ReviewController {
     @GetMapping("/my-reviews")
     public ApiResponse<ReviewResponseDTO.ReviewPreViewListDTO> getMyReviews(
             @RequestParam Long userId,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam @PageValidation int page,
+            @RequestParam @PageValidation int size) {
         ReviewResponseDTO.ReviewPreViewListDTO response = reviewQueryService.getMyReviews(userId, page, size);
         return ApiResponse.onSuccess(response);
     }

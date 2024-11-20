@@ -9,7 +9,6 @@ import lombok.Setter;
 public class MissionRequestDTO {
 
     @Getter
-    @Setter
     public static class ChallengeMissionRequestDto {
 
         @NotNull(message = "사용자 ID는 필수입니다.")
@@ -20,7 +19,6 @@ public class MissionRequestDTO {
     }
 
     @Getter
-    @Setter
     public static class AddMissionRequestDto {
 
         @NotBlank(message = "미션 제목은 필수입니다.")
@@ -28,5 +26,11 @@ public class MissionRequestDTO {
 
         @NotBlank(message = "미션 설명은 필수입니다.")
         private String description;
+    }
+
+    @Getter
+    public static class MissionListRequestDTO {
+        private Integer page;
+        private Integer size;
     }
 }
