@@ -37,5 +37,13 @@ public class MemberMission extends BaseEntity {
     public enum Status {
         SUCCESS, FAILURE, IN_PROGRESS
     }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public void setCompletedAt(LocalDateTime completedAt) {
+        this.completedAt = completedAt;
+    }
 }
 
