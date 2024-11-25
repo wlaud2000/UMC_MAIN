@@ -67,4 +67,7 @@ public class Member extends BaseEntity {
         this.password = password;
     }
 
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 }
