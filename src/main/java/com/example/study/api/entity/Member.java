@@ -1,5 +1,8 @@
 package com.example.study.api.entity;
 
+import com.example.study.api.enums.Gender;
+import com.example.study.api.enums.Provider;
+import com.example.study.api.enums.Role;
 import com.example.study.global.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,7 +27,7 @@ public class Member extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "provider", nullable = false)
+    @Column(name = "provider")
     @Enumerated(EnumType.STRING)
     private Provider provider;
 
@@ -44,6 +47,15 @@ public class Member extends BaseEntity {
     @Column(name = "address", nullable = false)
     private String address;
 
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     // 선호 카테고리
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MemberPrefer> preferCategories = new ArrayList<>();
@@ -51,12 +63,8 @@ public class Member extends BaseEntity {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Review> reviewList = new ArrayList<>();
 
-    // Enum 정의
-    public enum Provider {
-        KAKAO, NAVER, APPLE, GOOGLE
+    public void encodePassword(String password) {
+        this.password = password;
     }
 
-    public enum Gender {
-        MALE, FEMALE, NULL
-    }
 }
